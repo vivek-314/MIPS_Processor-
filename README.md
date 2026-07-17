@@ -10,3 +10,6 @@ data_memory <img width="1593" height="345" alt="image" src="https://github.com/u
 sign extend <img width="1604" height="159" alt="image" src="https://github.com/user-attachments/assets/35518204-ceeb-4dc9-9ef3-d51fb200bb9d" />
 
 alu_control <img width="1593" height="206" alt="image" src="https://github.com/user-attachments/assets/3c67536e-9b1c-4233-84e2-424ff9cf8f2c" />
+
+
+withput beq  <img width="1603" height="370" alt="image" src="https://github.com/user-attachments/assets/6aa1e1de-7624-4ea6-bae8-7ddee5cf0e36" />
