@@ -7,3 +7,4 @@ ALU  <img width="1607" height="248" alt="image" src="https://github.com/user-att
 
 data_memory <img width="1593" height="345" alt="image" src="https://github.com/user-attachments/assets/d262792b-3030-49df-881d-6c37814c2920" />
 
+sign extend <img width="1604" height="159" alt="image" src="https://github.com/user-attachments/assets/35518204-ceeb-4dc9-9ef3-d51fb200bb9d" />
