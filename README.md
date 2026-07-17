@@ -4,3 +4,6 @@ memoty instruction <img width="1624" height="283" alt="image" src="https://githu
 registers : <img width="1608" height="401" alt="image" src="https://github.com/user-attachments/assets/85346a85-50a9-46ca-afe1-57fbc6119eb3" />
 
 ALU  <img width="1607" height="248" alt="image" src="https://github.com/user-attachments/assets/bcb73ce9-21a2-48bf-92b4-8f472abd4a2d" />
+
+data_memory <img width="1593" height="345" alt="image" src="https://github.com/user-attachments/assets/d262792b-3030-49df-881d-6c37814c2920" />
+
