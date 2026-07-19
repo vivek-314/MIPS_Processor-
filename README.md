@@ -63,4 +63,46 @@ The simulation verifies the following:
 | `SUB`       | Register Subtraction |     
 | `AND`       | Bitwise AND          |     
 | `OR`        | Bitwise OR           |     
-| `SLT`       | Set Less Than        |     
+| `SLT`       | Set Less Than        |  
+
+
+# Test j2 : memory 
+
+addi r1,r0,5
+addi r2,r0,10
+add  r3,r1,r2
+sw   r3,0(r0)
+lw   r4,0(r0)
+
+E085
+E10A
+0530
+A180
+8480
+
+| Hex  | Instruction   |
+| ---- | ------------- |
+| E085 | addi r1,r0,5  |
+| E10A | addi r2,r0,10 |
+| 0530 | add r3,r1,r2  |
+| A180 | sw r3,0(r0)   |
+| 8480 | lw r4,0(r0)   |
+
+
+| PC (Hex) | Instruction (Hex) | Assembly Instruction | Expected Result    |
+| :------: | :---------------: | -------------------- | ------------------ |
+| `0x0000` |       `E085`      | `addi r1, r0, 5`     | `R1 = 0005`        |
+| `0x0002` |       `E10A`      | `addi r2, r0, 10`    | `R2 = 000A`        |
+| `0x0004` |       `0530`      | `add r3, r1, r2`     | `R3 = 000F`        |
+| `0x0006` |       `A180`      | `sw r3, 0(r0)`       | `Memory[0] = 000F` |
+| `0x0008` |       `8480`      | `lw r4, 0(r0)`       | `R4 = 000F`        |
+
+<img width="1604" height="421" alt="image" src="https://github.com/user-attachments/assets/12dc7187-c1cb-42a9-b458-027d7eeba0b2" />
+
+Waveform Observation
+Register R1 and R2 are initialized using ADDI.
+The ALU computes the sum (000F) and stores it in R3.
+During the SW instruction, mem_write is asserted and 000F is written into Memory[0].
+During the LW instruction, mem_read is asserted and the stored value (000F) is read back into register R4.
+The waveform confirms correct operation of the data memory, memory control signals, and write-back path.
+
