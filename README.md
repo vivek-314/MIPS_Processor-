@@ -2,7 +2,6 @@
 
 A **16-bit Single Cycle MIPS Processor** designed and implemented in **Verilog HDL**, supporting arithmetic, logical, memory access, branch, and jump instructions. The processor was developed from scratch by implementing each hardware module individually and integrating them into a complete datapath. Functionality was verified through comprehensive simulation and waveform analysis using **Xilinx Vivado**.
 
----
 
 ## Features
 
@@ -18,7 +17,6 @@ A **16-bit Single Cycle MIPS Processor** designed and implemented in **Verilog H
 - Jump Register (JR)
 - Comprehensive testbenches for module-level and processor-level verification
 
----
 
 ## Supported Instructions
 
@@ -34,7 +32,7 @@ A **16-bit Single Cycle MIPS Processor** designed and implemented in **Verilog H
 | Function Call | JAL |
 | Return | JR |
 
----
+
 
 # Processor Architecture
 
@@ -55,7 +53,8 @@ Main datapath components include:
 > **Insert Datapath Diagram Here**
 
 ```
-screenshots/datapath.png
+<img width="1665" height="945" alt="image" src="https://github.com/user-attachments/assets/6d6c7f5e-3251-4698-a50a-37f55e47cd88" />
+
 ```
 
 ---
