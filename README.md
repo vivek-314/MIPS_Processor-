@@ -136,7 +136,88 @@ E18F
 
 Waveform Observation
 Register R1 and R2 are initialized with the value 0005.
+
+
+# test 4 
+
+j    10
+addi r1,r0,5      // skipped
+addi r2,r0,10     // skipped
+addi r3,r0,15     // executed
+
+
+500A
+E085
+E10A
+E18F
+
+| Hex  | Instruction   |
+| ---- | ------------- |
+| 500A | j 10          |
+| E085 | addi r1,r0,5  |
+| E10A | addi r2,r0,10 |
+| E18F | addi r3,r0,15 |
+
 The ALU compares both registers using subtraction and produces 0000.
 The Zero flag is asserted, indicating the operands are equal.
 The Control Unit asserts the Branch signal for the BEQ instruction.
 The Program Counter selects the computed branch address (pc_next) instead of the sequential address (PC + 2), confirming correct branch execution.
+
+
+<img width="1601" height="367" alt="image" src="https://github.com/user-attachments/assets/17115ed8-f9fe-4051-870e-beba1a63b1ab" />
+
+| PC     | Instruction | Operation         | Expected Result                |
+| ------ | ----------- | ----------------- | ------------------------------ |
+| 0x0000 | 4003        | `j 3`             | Jump to instruction index 3    |
+| 0x0006 | E18F        | `addi r3, r0, 15` | `R3 = 15`                      |
+| 0x0008 | 0000        | NOP               | Sequential execution continues |
+
+
+observation 
+• The Jump instruction is fetched at PC = 0x0000.
+• The jump target address is calculated as 0x0006.
+• The Program Counter is updated with the jump target instead of PC + 2.
+• Instructions at addresses 0x0002 and 0x0004 are skipped.
+• Register R3 is updated to 15, confirming successful execution at the jump target.
+
+# test 5
+
+6003
+E085
+E10A
+E18F
+
+<img width="1611" height="451" alt="image" src="https://github.com/user-attachments/assets/f93f6c1f-fffa-4b8c-8017-35686cbaf892" />
+
+| PC          | Instruction | Assembly        | Expected Result                                                   |
+| ----------- | ----------- | --------------- | ----------------------------------------------------------------- |
+| 0x0000      | 6003        | `jal 3`         | Jump to address `0x0006`, store return address (`0x0002`) in `R7` |
+| 0x0006      | E18F        | `addi r3,r0,15` | `R3 = 15`                                                         |
+| Register R7 | —           | Link Register   | `0002`                                                            |
+
+Waveform Observation
+
+The jal instruction stores the return address (PC + 2) in the link register (R7) before updating the Program Counter to the jump target. The skipped instructions are not executed, and the target instruction correctly updates R3 to 15, confirming proper Jump and Link functionality.
+
+# Test 6
+6003
+E085
+0000
+1C08
+
+
+<img width="1604" height="346" alt="image" src="https://github.com/user-attachments/assets/183f01bb-c49f-4ae8-9138-679dd2a409ed" />
+
+
+| PC     | Instruction | Assembly       | Result                                     |
+| ------ | ----------- | -------------- | ------------------------------------------ |
+| 0x0000 | 6003        | `jal 3`        | Stores `0x0002` in `R7`, jumps to `0x0006` |
+| 0x0006 | 1C08        | `jr r7`        | Loads PC with value in `R7`                |
+| 0x0002 | E085        | `addi r1,r0,5` | `R1 = 5`                                   |
+| 0x0004 | 0000        | NOP            | Sequential execution                       |
+| 0x0006 | 1C08        | Loop repeats   | Return verified                            |
+
+
+Waveform Observation
+
+The jal instruction stores the return address (PC + 2) in register R7 and jumps to the target instruction. The subsequent jr r7 instruction loads the Program Counter with the value stored in R7, returning execution to the instruction immediately following the original jal. The repeating PC sequence (0 → 6 → 2 → 4 → 6) confirms correct implementation of both Jump and Link and Jump Register instructions.
