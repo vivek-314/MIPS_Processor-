@@ -176,8 +176,8 @@ Used by:
 
 Each processor component was verified independently before full system integration.
 
-| Module | Status |
-|---------|--------|
+| Module | 
+|---------|
 | Program Counter  |
 | Register File |
 | Instruction Memory | 
@@ -344,5 +344,5 @@ The current implementation is a complete single-cycle processor. Possible future
 
 # References
 
-David A. Patterson and John L. Hennessy, **Computer Organization and Design: The Hardware/Software Interface**, Morgan Kaufmann.
-
+- David A. Patterson and John L. Hennessy, **Computer Organization and Design: The Hardware/Software Interface**, Morgan Kaufmann.
+- ES 336: Computer Organization and Architecture slides, IIT Gandhinagar 
